@@ -8,10 +8,13 @@ const urlsToCache = [
 ];
 // Install event: Caches the assets
 self.addEventListener("install", (event) => {
-event.waitUntil
-cachesconsole.log("Caching assets");
+event.waitUntil(
+caches.open(CACHE_NAME).then((cache) => {
+console.log("Caching assets");
 return cache.addAll(urlsToCache);
 })
+);
+});
 // Fetch event: Serves cached assets
 self.addEventListener("fetch", (event) => {
 event.respondWith(
